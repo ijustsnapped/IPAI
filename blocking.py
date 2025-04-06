@@ -24,13 +24,12 @@ def normalize_column_names(df):
         'Book-Title': 'title',
         'Book Name': 'title',
         'Title': 'title'
-        # podes adicionar mais conforme necessário
     }
     df = df.rename(columns={col: column_map.get(col, col) for col in df.columns})
     return df
 
 
-#Funcoes para a normalização 
+#Funções para a normalização 
 # Função para normalizar títulos
 def normalize_text(text):
     if pd.isna(text):
@@ -121,7 +120,6 @@ df1 = pd.read_csv("C:\\Users\\diogo\\Desktop\\Mestrado\\IPAI\\Datasets\\Datasets
 
 df1['parent_asin'] = df1['parent_asin'].apply(normalize_asin)
 df1['title'] = df1['title'].apply(normalize_text)
-#não existe coluna para os autores mas sim uma com os detalhes dos livros onde inclui o autor e outras informações
 df1=normalize_column_names(df1)
 df1_normalized_only = df1[['asin', 'title']]
 
@@ -172,7 +170,7 @@ df4 = pd.read_csv("C:\\Users\\diogo\\Desktop\\Mestrado\\IPAI\\Datasets\\Datasets
 df4['ISBN'] = df4['ISBN'].apply(normalize_isbn)
 df4['Book-Title'] = df4['Book-Title'].apply(normalize_text)
 df4['Book-Author'] = df4['Book-Author'].apply(normalize_author1)
-#não existe asin
+
 df4=normalize_column_names(df4)
 df4_normalized_only = df4[['isbn13', 'title', 'author']]
 
@@ -185,7 +183,7 @@ df5 = pd.read_csv("C:\\Users\\diogo\\Desktop\\Mestrado\\IPAI\\Datasets\\Datasets
 
 df5['Book Name'] = df5['Book Name'].apply(normalize_text)
 df5['Author'] = df5['Author'].apply(normalize_authors3)
-#não existe qualquer número de identificação único isbn ou asin
+
 df5=normalize_column_names(df5)
 df5_normalized_only = df5[['title', 'author']]
 
@@ -199,7 +197,7 @@ df6 = pd.read_csv("C:\\Users\\diogo\\Desktop\\Mestrado\\IPAI\\Datasets\\Datasets
 df6['ASIN'] = df6['ASIN'].apply(normalize_asin)
 df6['Title'] = df6['TITLE'].apply(normalize_text)
 df6['AUTHOR'] = df6['AUTHOR'].apply(normalize_author1)
-#não existe isbn
+
 df6=normalize_column_names(df6)
 df6_normalized_only = df6[['asin','title', 'author']]
 
